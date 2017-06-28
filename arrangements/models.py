@@ -11,8 +11,8 @@ class UserInfo(models.Model):
         (MALE, 'Male'),
         (FEMALE, 'Female'),
     )
-    gender = models.CharField(max_length=1,choices=GENDER_CHOICES,default=MALE)
-    email = models.EmailField()
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES,default=MALE)
+    email = models.EmailField(blank=True)
 
 
 class Activity(models.Model):

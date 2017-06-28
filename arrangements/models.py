@@ -4,7 +4,7 @@ from django.utils import timezone
 
 class UserInfo(models.Model):
     user = models.OneToOneField('auth.user', related_name='user_info')
-    nickname = models.CharField(max_length=20)
+    nickname = models.CharField(max_length=20, unique=True)
     MALE = 'M'
     FEMALE = 'F'
     GENDER_CHOICES = (

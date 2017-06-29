@@ -6,6 +6,7 @@ urlpatterns = [
     url(r'^to_index$', views.index, name='to-index'),
     # auth
     url(r'^login$', views.login, name='login'),
+    url(r'^logout$', views.logout, name='logout'),
     url(r'^authenticate$', views.authenticate, name='authenticate'),
     url(r'^signup$', views.signup, name='signup'),
     url(r'^signup/submit$', views.signup_submit, name='signup-submit'),

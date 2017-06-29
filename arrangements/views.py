@@ -51,7 +51,7 @@ def logout(request):
 @login_required
 def set_info(request):
     user_info = auth.get_user(request).user_info
-    return render(request, 'set_info.html', {'user_info': user_info})
+    return render(request, 'set_info.html', {'user_info': user_info, 'form_info': UserInfoForm()})
 
 
 @login_required
@@ -67,7 +67,7 @@ def set_info_submit(request):
 
     else:
         messages.warning(request, '输入了无效的用户信息')
-        return redirect('set-info')
+        return render(request, 'set_info.html', {'user_info': user_info, 'form_info': UserInfoForm()})
 
 
 @login_required

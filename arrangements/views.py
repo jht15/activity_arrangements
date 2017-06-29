@@ -1,9 +1,11 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Activity, UserInfo
+from .forms import UserInfoForm, ActivityForm
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
+from django.contrib import messages
 
 
 def index(request):
@@ -48,28 +50,46 @@ def logout(request):
 
 @login_required
 def set_info(request):
-    return render(request, 'set_info.html')
+    user_info = auth.get_user(request).user_info
+    return render(request, 'set_info.html', {'user_info': user_info})
 
 
 @login_required
 def set_info_submit(request):
-    return redirect('index')
+    form = UserInfoForm(request.POST) if request.method == 'POST' else None
+    user_info = auth.get_user(request).user_info
+
+    if form.is_valid():
+
+        user_info = form.save()
+        user_info.save()
+        return redirect('index')
+
+    else:
+        messages.warning(request, '输入了无效的用户信息')
+        return redirect('set-info')
 
 
 @login_required
 def activities_list(request):
-    return render(request, 'activities_list.html')
+    activities = auth.get_user(request).activities.all()
+
+    return render(request, 'activities_list.html', {'activities': activities})
 
 
 @login_required
 def delete_activity(request, activity_id):
+    activity = get_object_or_404(Activity, pk=activity_id)
+    activity.delete()
     return render(request, 'activities_list.html')
 
 
 @login_required
 @require_POST
-def activity_info(request):
-    return render(request, 'activity.html')
+def activity_info(request, activity_id):
+    activity = get_object_or_404(Activity, pk=activity_id)
+
+    return render(request, 'activity.html', {'activity': activity})
 
 
 @login_required
@@ -84,22 +104,40 @@ def search(request):
 
 @login_required
 def search_submit(request):
-    return render(request, 'search_result.html')
+    activities = auth.get_user(request).activities.all()
+    search_list = []
+
+    #for activity in activities:
+        #if
+            #search_list.append(activity)
+
+    return render(request, 'search_result.html', {'search_list': search_list})
 
 
 @login_required
 def arrange(request):
-    return render(request, 'arrangement.html')
+    activities = auth.get_user(request).activities.all()
+
+    arrange_list = []
+    disarrange_list = []
+    return render(request, 'arrangement.html', {'arrange_list': arrange_list, 'disarrange_list': disarrange_list})
 
 
 @login_required
 def type_in_single(request):
-    return render(request, 'type_in_single.html')
+    form = ActivityForm()
+    return render(request, 'type_in_single.html', {'form': form})
 
 
 @login_required
 def type_in_single_submit(request):
-    return redirect('type-in-single')
+    form = ActivityForm(request.POST) if request.method == 'POST' else None
+    if form.is_valid():
+        activity = form.save()
+        activity.user = request.user
+        activity.save()
+        form = ActivityForm()
+    return render(request, 'type_in_single.html', {'form': form})
 
 
 @login_required

@@ -16,7 +16,7 @@ class UserInfo(models.Model):
 
 
 class Activity(models.Model):
-    author = models.ForeignKey('auth.user', related_name='activities', related_query_name='activity')
+    user = models.ForeignKey('auth.user', related_name='activities', related_query_name='activity')
     name = models.CharField(max_length=50)
     start_time = models.DateTimeField(auto_now=True)
     end_time = models.DateTimeField()

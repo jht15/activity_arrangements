@@ -72,20 +72,88 @@ def set_info_submit(request):
 
 @login_required
 def activities_list(request):
-    activities = auth.get_user(request).activities.all()
+    chosen_search_list = []
+    chosen_unsearch_list = []
+    unchosen_search_list = []
+    unchosen_unsearch_list = []
 
-    return render(request, 'activities_list.html', {'activities': activities})
+    for item in auth.get_user(request).activities.all():
+        if item.is_chosen:
+            if item.is_search:
+                chosen_search_list.add(item)
+            else:
+                chosen_unsearch_list.add(item)
+        else:
+            if item.is_search:
+                unchosen_search_list.add(item)
+            else:
+                unchosen_unsearch_list.add(item)
+
+    return render(request, 'activities_list.html', {'chosen_search_list': chosen_search_list,
+                                                    'chosen_unsearch_list': chosen_unsearch_list,
+                                                    'unchosen_search_list': unchosen_search_list,
+                                                    'unchosen_unsearch_list': unchosen_unsearch_list
+                                                    })
 
 
 @login_required
 def delete_activity(request, activity_id):
     activity = get_object_or_404(Activity, pk=activity_id)
     activity.delete()
-    return render(request, 'activities_list.html')
+    chosen_search_list = []
+    chosen_unsearch_list = []
+    unchosen_search_list = []
+    unchosen_unsearch_list = []
+
+    for item in auth.get_user(request).activities.all():
+        if item.is_chosen:
+            if item.is_search:
+                chosen_search_list.add(item)
+            else:
+                chosen_unsearch_list.add(item)
+        else:
+            if item.is_search:
+                unchosen_search_list.add(item)
+            else:
+                unchosen_unsearch_list.add(item)
+
+    return render(request, 'activities_list.html', {'chosen_search_list': chosen_search_list,
+                                                    'chosen_unsearch_list': chosen_unsearch_list,
+                                                    'unchosen_search_list': unchosen_search_list,
+                                                    'unchosen_unsearch_list': unchosen_unsearch_list
+                                                    })
+
 
 
 @login_required
-@require_POST
+def choose_activity_from_list(request, activity_id):
+    activity = get_object_or_404(Activity, pk=activity_id)
+    activity.is_chosen = not activity.is_chosen
+    chosen_search_list = []
+    chosen_unsearch_list = []
+    unchosen_search_list = []
+    unchosen_unsearch_list = []
+
+    for item in auth.get_user(request).activities.all():
+        if item.is_chosen:
+            if item.is_search:
+                chosen_search_list.add(item)
+            else:
+                chosen_unsearch_list.add(item)
+        else:
+            if item.is_search:
+                unchosen_search_list.add(item)
+            else:
+                unchosen_unsearch_list.add(item)
+
+    return render(request, 'activities_list.html', {'chosen_search_list': chosen_search_list,
+                                                    'chosen_unsearch_list': chosen_unsearch_list,
+                                                    'unchosen_search_list': unchosen_search_list,
+                                                    'unchosen_unsearch_list': unchosen_unsearch_list
+                                                    })
+
+
+@login_required
 def activity_info(request, activity_id):
     activity = get_object_or_404(Activity, pk=activity_id)
 
@@ -94,12 +162,28 @@ def activity_info(request, activity_id):
 
 @login_required
 def to_list(request):
-    return redirect('activities-list')
+    chosen_search_list = []
+    chosen_unsearch_list = []
+    unchosen_search_list = []
+    unchosen_unsearch_list = []
 
+    for item in auth.get_user(request).activities.all():
+        if item.is_chosen:
+            if item.is_search:
+                chosen_search_list.add(item)
+            else:
+                chosen_unsearch_list.add(item)
+        else:
+            if item.is_search:
+                unchosen_search_list.add(item)
+            else:
+                unchosen_unsearch_list.add(item)
 
-@login_required
-def search(request):
-    return render(request, 'search.html')
+    return render(request, 'activities_list.html', {'chosen_search_list': chosen_search_list,
+                                                    'chosen_unsearch_list': chosen_unsearch_list,
+                                                    'unchosen_search_list': unchosen_search_list,
+                                                    'unchosen_unsearch_list': unchosen_unsearch_list
+                                                    })
 
 
 @login_required
@@ -110,8 +194,31 @@ def search_submit(request):
     #for activity in activities:
         #if
             #search_list.append(activity)
+            #activity.is_search = True
 
-    return render(request, 'search_result.html', {'search_list': search_list})
+    chosen_search_list = []
+    chosen_unsearch_list = []
+    unchosen_search_list = []
+    unchosen_unsearch_list = []
+
+    for item in auth.get_user(request).activities.all():
+        if item.is_chosen:
+            if item.is_search:
+                chosen_search_list.add(item)
+            else:
+                chosen_unsearch_list.add(item)
+        else:
+            if item.is_search:
+                unchosen_search_list.add(item)
+            else:
+                unchosen_unsearch_list.add(item)
+
+    return render(request, 'activities_list.html', {'chosen_search_list': chosen_search_list,
+                                                    'chosen_unsearch_list': chosen_unsearch_list,
+                                                    'unchosen_search_list': unchosen_search_list,
+                                                    'unchosen_unsearch_list': unchosen_unsearch_list
+                                                    })
+
 
 
 @login_required

@@ -61,8 +61,10 @@ def set_info_submit(request):
 
     if form.is_valid():
 
-        user_info = form.save()
-        user_info.user = auth.get_user(request)
+        temp = form.save(commit=False)
+        user_info.nickname = temp.nickname
+        user_info.gender = temp.gender
+        user_info.email = temp.email
         user_info.save()
         return redirect('index')
 

@@ -1,6 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
-<table class="table"><tbody>
-	
-</tbody></table>
+{% if user.is_authenticated %}
+<div class="user_info pre">
+	<div class="user_nickname">{{user_info.nickname}}</div>
+	<div class="user_gender">
+	{%if user_info.gender == 'M'%}
+		Male
+	{% else %}
+		Female
+	{% endif %}
+	</div>
+	<div class="user_email">{{user_info.email}}</div>
+	<a href="{% url 'activities-list' %}">我的活动列表</a>
+</div>
+{% else %}
+<div>
+	<div>欢迎来到“今儿该怎么过”，请登录</div>
+	<a href="{% url 'login' %}">登录</a>
+</div>
+{% endif %}
 {% endblock %}

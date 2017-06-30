@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block content %}
+<div class=" activity">
+	<div class=" activity">
+		<h3>活动名称：{{activity.name}}</h3>
+		<h4>开始时间： {% bootstrap_icon 'activity.start_time'%}<strong>{{activity.start_time}}</strong></h4>
+		<h4>结束时间： {% bootstrap_icon 'activity.end_time' %}{{activity.end_time}}</h4>
+		<h4>优先级：{% bootstrap_icon 'activity.priority' %}{{activity.priority}}</h4>
+		<h4>地点：{% bootstrap_icon 'activity.place' %}{{activity.place}}</h4>
+		<h4>热情度：{% bootstrap_icon 'activity.enthusiasm' %}{{activity.enthusiasm}}</h4>
+		<h4>类别：{% bootstrap_icon 'activity.type' %}{{activity.type}}</h4>
+	</div>
+	<div class="content">
+		<h4>内容：</h4>
+		<h4>{{ activity.content }}</h4>
+	</div>
+	<div class="panel-footer"></div>
+</div>
+{% endblock %}

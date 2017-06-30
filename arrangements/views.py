@@ -9,7 +9,10 @@ from django.contrib import messages
 
 
 def index(request):
-    return render(request, 'index.html')
+    if auth.get_user(request).is_authenticated:
+        return render(request, 'index.html', {'user_info': auth.get_user(request).user_info})
+    else:
+        return render(request, 'index.html', {'user_info': None})
 
 
 def login(request):
@@ -83,14 +86,14 @@ def activities_list(request):
     for item in auth.get_user(request).activities.all():
         if item.is_chosen:
             if item.is_search:
-                chosen_search_list.add(item)
+                chosen_search_list.append(item)
             else:
-                chosen_unsearch_list.add(item)
+                chosen_unsearch_list.append(item)
         else:
             if item.is_search:
-                unchosen_search_list.add(item)
+                unchosen_search_list.append(item)
             else:
-                unchosen_unsearch_list.add(item)
+                unchosen_unsearch_list.append(item)
 
     return render(request, 'activities_list.html', {'chosen_search_list': chosen_search_list,
                                                     'chosen_unsearch_list': chosen_unsearch_list,
@@ -111,14 +114,14 @@ def delete_activity(request, activity_id):
     for item in auth.get_user(request).activities.all():
         if item.is_chosen:
             if item.is_search:
-                chosen_search_list.add(item)
+                chosen_search_list.append(item)
             else:
-                chosen_unsearch_list.add(item)
+                chosen_unsearch_list.append(item)
         else:
             if item.is_search:
-                unchosen_search_list.add(item)
+                unchosen_search_list.append(item)
             else:
-                unchosen_unsearch_list.add(item)
+                unchosen_unsearch_list.append(item)
 
     return render(request, 'activities_list.html', {'chosen_search_list': chosen_search_list,
                                                     'chosen_unsearch_list': chosen_unsearch_list,
@@ -132,6 +135,7 @@ def delete_activity(request, activity_id):
 def choose_activity_from_list(request, activity_id):
     activity = get_object_or_404(Activity, pk=activity_id)
     activity.is_chosen = not activity.is_chosen
+    activity.save()
     chosen_search_list = []
     chosen_unsearch_list = []
     unchosen_search_list = []
@@ -140,14 +144,14 @@ def choose_activity_from_list(request, activity_id):
     for item in auth.get_user(request).activities.all():
         if item.is_chosen:
             if item.is_search:
-                chosen_search_list.add(item)
+                chosen_search_list.append(item)
             else:
-                chosen_unsearch_list.add(item)
+                chosen_unsearch_list.append(item)
         else:
             if item.is_search:
-                unchosen_search_list.add(item)
+                unchosen_search_list.append(item)
             else:
-                unchosen_unsearch_list.add(item)
+                unchosen_unsearch_list.append(item)
 
     return render(request, 'activities_list.html', {'chosen_search_list': chosen_search_list,
                                                     'chosen_unsearch_list': chosen_unsearch_list,
@@ -173,14 +177,14 @@ def to_list(request):
     for item in auth.get_user(request).activities.all():
         if item.is_chosen:
             if item.is_search:
-                chosen_search_list.add(item)
+                chosen_search_list.append(item)
             else:
-                chosen_unsearch_list.add(item)
+                chosen_unsearch_list.append(item)
         else:
             if item.is_search:
-                unchosen_search_list.add(item)
+                unchosen_search_list.append(item)
             else:
-                unchosen_unsearch_list.add(item)
+                unchosen_unsearch_list.append(item)
 
     return render(request, 'activities_list.html', {'chosen_search_list': chosen_search_list,
                                                     'chosen_unsearch_list': chosen_unsearch_list,
@@ -207,14 +211,14 @@ def search_submit(request):
     for item in auth.get_user(request).activities.all():
         if item.is_chosen:
             if item.is_search:
-                chosen_search_list.add(item)
+                chosen_search_list.append(item)
             else:
-                chosen_unsearch_list.add(item)
+                chosen_unsearch_list.append(item)
         else:
             if item.is_search:
-                unchosen_search_list.add(item)
+                unchosen_search_list.append(item)
             else:
-                unchosen_unsearch_list.add(item)
+                unchosen_unsearch_list.append(item)
 
     return render(request, 'activities_list.html', {'chosen_search_list': chosen_search_list,
                                                     'chosen_unsearch_list': chosen_unsearch_list,
@@ -247,7 +251,7 @@ def type_in_single(request):
 def type_in_single_submit(request):
     form = ActivityForm(request.POST) if request.method == 'POST' else None
     if form.is_valid():
-        activity = form.save()
+        activity = form.save(commit=False)
         activity.user = request.user
         activity.save()
         form = ActivityForm()

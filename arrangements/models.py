@@ -23,9 +23,9 @@ class Activity(models.Model):
     priority = models.PositiveSmallIntegerField()
     place = models.CharField(max_length=50)
     enthusiasm = models.PositiveSmallIntegerField()
-    type = models.TextField(max_length=10)
-    is_chosen = False
-    is_search = False
+    type = models.CharField(max_length=10)
+    is_chosen = models.BooleanField(default=False)
+    is_search = models.BooleanField(default=False)
     content = models.TextField()
 
 # Create your models here.

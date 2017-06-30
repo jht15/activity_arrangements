@@ -14,7 +14,7 @@ class ActivityForm(forms.ModelForm):
         fields = ('name', 'start_time', 'end_time', 'priority', 'place', 'enthusiasm', 'type', 'content')
 
 
-class SearchForm(forms.ModelForm):
+class SearchForm(forms.Form):
     name = forms.CharField(max_length=50, required=False)
     min_start_time = forms.DateTimeField(required=False)
     max_start_time = forms.DateTimeField(required=False)
@@ -25,3 +25,7 @@ class SearchForm(forms.ModelForm):
     type = forms.CharField(max_length=10, required=False)
     min_priority = forms.IntegerField(required=False)
     min_enthusiasm = forms.IntegerField(required=False)
+
+
+class FileForm(forms.Form):
+    file = forms.FileField()

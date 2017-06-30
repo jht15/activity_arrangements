@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Activity, UserInfo
-from .forms import UserInfoForm, ActivityForm, SearchForm
+from .forms import UserInfoForm, ActivityForm, SearchForm, FileForm
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
@@ -25,6 +25,7 @@ def authenticate(request):
     password = request.POST.get('password')
     user = auth.authenticate(request, username=username, password=password)
     if not user:
+        messages.warning(request, '登录失败！')
         return redirect('login')
     auth.login(request, user)
     return redirect('index')
@@ -43,7 +44,8 @@ def signup_submit(request):
         info.save()
         return redirect('login')
     except:
-        return redirect('index')
+        messages.warning(request, '注册失败！')
+        return redirect('signup')
 
 
 @login_required
@@ -74,7 +76,7 @@ def set_info_submit(request):
 
     else:
         messages.warning(request, '输入了无效的用户信息')
-        return render(request, 'set_info.html', {'user_info': user_info, 'form_info': UserInfoForm()})
+        return redirect('set-info')
 
 
 @login_required
@@ -107,29 +109,8 @@ def activities_list(request):
 def delete_activity(request, activity_id):
     activity = get_object_or_404(Activity, pk=activity_id)
     activity.delete()
-    chosen_search_list = []
-    chosen_unsearch_list = []
-    unchosen_search_list = []
-    unchosen_unsearch_list = []
-
-    for item in auth.get_user(request).activities.all():
-        if item.is_chosen:
-            if item.is_search:
-                chosen_search_list.append(item)
-            else:
-                chosen_unsearch_list.append(item)
-        else:
-            if item.is_search:
-                unchosen_search_list.append(item)
-            else:
-                unchosen_unsearch_list.append(item)
-
-    return render(request, 'activities_list.html', {'chosen_search_list': chosen_search_list,
-                                                    'chosen_unsearch_list': chosen_unsearch_list,
-                                                    'unchosen_search_list': unchosen_search_list,
-                                                    'unchosen_unsearch_list': unchosen_unsearch_list,
-                                                    'search_form': SearchForm()
-                                                    })
+    messages.info(request, '删除成功！')
+    return redirect('activities-list')
 
 
 
@@ -138,29 +119,8 @@ def choose_activity_from_list(request, activity_id):
     activity = get_object_or_404(Activity, pk=activity_id)
     activity.is_chosen = not activity.is_chosen
     activity.save()
-    chosen_search_list = []
-    chosen_unsearch_list = []
-    unchosen_search_list = []
-    unchosen_unsearch_list = []
 
-    for item in auth.get_user(request).activities.all():
-        if item.is_chosen:
-            if item.is_search:
-                chosen_search_list.append(item)
-            else:
-                chosen_unsearch_list.append(item)
-        else:
-            if item.is_search:
-                unchosen_search_list.append(item)
-            else:
-                unchosen_unsearch_list.append(item)
-
-    return render(request, 'activities_list.html', {'chosen_search_list': chosen_search_list,
-                                                    'chosen_unsearch_list': chosen_unsearch_list,
-                                                    'unchosen_search_list': unchosen_search_list,
-                                                    'unchosen_unsearch_list': unchosen_unsearch_list,
-                                                    'search_form': SearchForm()
-                                                    })
+    return redirect('activities-list')
 
 
 @login_required
@@ -172,29 +132,7 @@ def activity_info(request, activity_id):
 
 @login_required
 def to_list(request):
-    chosen_search_list = []
-    chosen_unsearch_list = []
-    unchosen_search_list = []
-    unchosen_unsearch_list = []
-
-    for item in auth.get_user(request).activities.all():
-        if item.is_chosen:
-            if item.is_search:
-                chosen_search_list.append(item)
-            else:
-                chosen_unsearch_list.append(item)
-        else:
-            if item.is_search:
-                unchosen_search_list.append(item)
-            else:
-                unchosen_unsearch_list.append(item)
-
-    return render(request, 'activities_list.html', {'chosen_search_list': chosen_search_list,
-                                                    'chosen_unsearch_list': chosen_unsearch_list,
-                                                    'unchosen_search_list': unchosen_search_list,
-                                                    'unchosen_unsearch_list': unchosen_unsearch_list,
-                                                    'search_form': SearchForm()
-                                                    })
+    return redirect('activities-list')
 
 
 @login_required
@@ -264,30 +202,10 @@ def search_submit(request):
         for item in activities:
             item.is_search = True
             item.save
-
-    chosen_search_list = []
-    chosen_unsearch_list = []
-    unchosen_search_list = []
-    unchosen_unsearch_list = []
-
-    for item in auth.get_user(request).activities.all():
-        if item.is_chosen:
-            if item.is_search:
-                chosen_search_list.append(item)
-            else:
-                chosen_unsearch_list.append(item)
-        else:
-            if item.is_search:
-                unchosen_search_list.append(item)
-            else:
-                unchosen_unsearch_list.append(item)
-
-    return render(request, 'activities_list.html', {'chosen_search_list': chosen_search_list,
-                                                    'chosen_unsearch_list': chosen_unsearch_list,
-                                                    'unchosen_search_list': unchosen_search_list,
-                                                    'unchosen_unsearch_list': unchosen_unsearch_list,
-                                                    'search_form': SearchForm()
-                                                    })
+        messages.info(request, '搜索完成！')
+    else:
+        messages.warning(request, '搜索失败！')
+    return redirect('activities-list')
 
 
 
@@ -319,15 +237,23 @@ def type_in_single_submit(request):
         activity.user = request.user
         activity.save()
         form = ActivityForm()
-    return render(request, 'type_in_single.html', {'form': form})
+        messages.info(request, '信息录入成功')
+    else:
+        messages.warning(request, '表单无效！')
+
+    return redirect('type-in-single')
 
 
 @login_required
 def type_in_multi(request):
-    return render(request, 'type_in_multi.html')
+    return render(request, 'type_in_multi.html', {'form': FileForm()})
 
 
 @login_required
 def type_in_multi_submit(request):
+    form = FileForm(request.POST) if request.method == 'POST' else None
+    if form.is_valid():
+        file = form.file
+
     return redirect('type-in-multi')
 

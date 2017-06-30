@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block content%}
+<h3>set-info</h3>
+<div class="panel panel-default">
+	<div class="panel-heading">修改信息</div>
+	<div class="panel-body">
+		<form method="POST" action="{% url 'set-info-submit' %}"> 
+			{% csrf_token %}
+			{% bootstrap_form form_info layout='inline'%}
+			{% buttons submit=' 保存' %}{% endbuttons %}
+		</form>
+	</div>
+</div>
+{% endblock %}

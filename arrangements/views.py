@@ -39,7 +39,7 @@ def signup_submit(request):
         info.save()
         return redirect('login')
     except:
-        return redirect('signup')
+        return redirect('index')
 
 
 @login_required
@@ -62,6 +62,7 @@ def set_info_submit(request):
     if form.is_valid():
 
         user_info = form.save()
+        user_info.user = auth.get_user(request)
         user_info.save()
         return redirect('index')
 
@@ -223,7 +224,11 @@ def search_submit(request):
 
 @login_required
 def arrange(request):
-    activities = auth.get_user(request).activities.all()
+    activities = []
+    for activity in auth.get_user(request).activities.all():
+        if activity.is_chosen:
+            activities.add(activity)
+
 
     arrange_list = []
     disarrange_list = []

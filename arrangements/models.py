@@ -11,14 +11,14 @@ class UserInfo(models.Model):
         (MALE, 'Male'),
         (FEMALE, 'Female'),
     )
-    gender = models.CharField(max_length=1, choices=GENDER_CHOICES,default=MALE)
-    email = models.EmailField(blank=True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default=MALE)
+    email = models.EmailField(blank=True, null=True)
 
 
 class Activity(models.Model):
     user = models.ForeignKey('auth.user', related_name='activities', related_query_name='activity')
     name = models.CharField(max_length=50)
-    start_time = models.DateTimeField(auto_now=True)
+    start_time = models.DateTimeField()
     end_time = models.DateTimeField()
     priority = models.PositiveSmallIntegerField()
     place = models.CharField(max_length=50)

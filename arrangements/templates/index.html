@@ -2,7 +2,7 @@
 {% block content %}
 {% if user.is_authenticated %}
 <div class="user_info pre">
-	<div class="user_nickname">{{user_info.nickname}}</div>
+	<p><div class="user_nickname">{{user_info.nickname}}</div>
 	<div class="user_gender">
 	{%if user_info.gender == 'M'%}
 		Male
@@ -11,7 +11,12 @@
 	{% endif %}
 	</div>
 	<div class="user_email">{{user_info.email}}</div>
-	<a href="{% url 'activities-list' %}">我的活动列表</a>
+	</p>
+	</br>
+	</br>
+	<a href="{% url 'activities-list' %}"><font size="4">我的活动列表</font></a>
+	</br>
+	</br>
 </div>
 {% else %}
 <div>

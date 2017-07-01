@@ -3,7 +3,16 @@
   <component name="ChangeListManager">
     <list default="true" id="980d4bc0-87ff-4df5-b4c5-ddb980fb8279" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arrangements/forms.py" afterPath="$PROJECT_DIR$/arrangements/forms.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arrangements/templates/activities_list.html" afterPath="$PROJECT_DIR$/arrangements/templates/activities_list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arrangements/templates/activity.html" afterPath="$PROJECT_DIR$/arrangements/templates/activity.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arrangements/templates/arrangement.html" afterPath="$PROJECT_DIR$/arrangements/templates/arrangement.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arrangements/templates/base.html" afterPath="$PROJECT_DIR$/arrangements/templates/base.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arrangements/templates/index.html" afterPath="$PROJECT_DIR$/arrangements/templates/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arrangements/templates/login.html" afterPath="$PROJECT_DIR$/arrangements/templates/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arrangements/templates/set_info.html" afterPath="$PROJECT_DIR$/arrangements/templates/set_info.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arrangements/templates/signup.html" afterPath="$PROJECT_DIR$/arrangements/templates/signup.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arrangements/templates/type_in_multi.html" afterPath="$PROJECT_DIR$/arrangements/templates/type_in_multi.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arrangements/templates/type_in_single.html" afterPath="$PROJECT_DIR$/arrangements/templates/type_in_single.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/arrangements/views.py" afterPath="$PROJECT_DIR$/arrangements/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,30 +30,13 @@
     <splitter split-orientation="vertical" split-proportion="0.45793268">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/arrangements/urls.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="131">
-                  <caret line="17" column="85" lean-forward="true" selection-start-line="17" selection-start-column="85" selection-end-line="17" selection-end-column="85" />
+                <state relative-caret-position="255">
+                  <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
                   <folding>
                     <element signature="e#0#32#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/arrangements/templates/login.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding>
-                    <marker date="1498816676000" expanded="true" signature="26:607" ph="{% block content ... %}" />
-                    <marker date="1498816676000" expanded="true" signature="49:607" ph="..." />
-                    <marker date="1498816676000" expanded="true" signature="58:607" ph="..." />
-                    <marker date="1498816676000" expanded="true" signature="64:591" ph="..." />
-                    <marker date="1498816676000" expanded="true" signature="120:584" ph="..." />
-                    <marker date="1498816676000" expanded="true" signature="165:324" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -54,7 +46,7 @@
             <entry file="file://$PROJECT_DIR$/arrangements/templates/index.html">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="300">
-                  <caret line="20" column="11" lean-forward="false" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+                  <caret line="25" column="11" lean-forward="false" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
                   <folding />
                 </state>
               </provider>
@@ -63,8 +55,8 @@
           <file leaf-file-name="signup.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/arrangements/templates/signup.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+                <state relative-caret-position="285">
+                  <caret line="19" column="11" lean-forward="false" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
                   <folding />
                 </state>
               </provider>
@@ -80,11 +72,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/arrangements/models.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="21" column="37" lean-forward="false" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
+                <state relative-caret-position="166">
+                  <caret line="26" column="50" lean-forward="false" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
                   <folding>
                     <element signature="e#0#28#0" expanded="true" />
                   </folding>
@@ -115,8 +107,8 @@
           <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/arrangements/forms.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="88">
-                  <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+                <state relative-caret-position="375">
+                  <caret line="26" column="55" lean-forward="false" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
                   <folding />
                 </state>
               </provider>
@@ -125,12 +117,9 @@
           <file leaf-file-name="type_in_single.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/arrangements/templates/type_in_single.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="120">
-                  <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-                  <folding>
-                    <marker date="1498816677000" expanded="true" signature="344:386" ph="{% buttons submit=' 保存' ... %}" />
-                    <marker date="1498816677000" expanded="true" signature="410:456" ph="..." />
-                  </folding>
+                <state relative-caret-position="135">
+                  <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -142,8 +131,8 @@
           <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/arrangements/views.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-632">
-                  <caret line="206" column="40" lean-forward="false" selection-start-line="206" selection-start-column="40" selection-end-line="206" selection-end-column="40" />
+                <state relative-caret-position="74">
+                  <caret line="144" column="23" lean-forward="false" selection-start-line="144" selection-start-column="23" selection-end-line="144" selection-end-column="23" />
                   <folding>
                     <element signature="e#0#64#0" expanded="true" />
                   </folding>
@@ -196,8 +185,8 @@
         <option value="$PROJECT_DIR$/arrangements/templates/type_in_single.html" />
         <option value="$PROJECT_DIR$/arrangements/models.py" />
         <option value="$PROJECT_DIR$/arrangements/my_function.py" />
-        <option value="$PROJECT_DIR$/arrangements/forms.py" />
         <option value="$PROJECT_DIR$/arrangements/urls.py" />
+        <option value="$PROJECT_DIR$/arrangements/forms.py" />
         <option value="$PROJECT_DIR$/arrangements/views.py" />
       </list>
     </option>
@@ -209,8 +198,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="343" />
-    <option name="y" value="24" />
+    <option name="x" value="221" />
+    <option name="y" value="23" />
     <option name="width" value="1400" />
     <option name="height" value="901" />
   </component>
@@ -232,7 +221,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -301,6 +289,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="arrangements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="bootstrap" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activity_arrangements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activity_arrangements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="arrangements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activity_arrangements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activity_arrangements" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="activity_arrangements" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -308,6 +336,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -539,7 +568,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="343" y="24" width="1400" height="901" extended-state="0" />
+    <frame x="221" y="23" width="1400" height="901" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -575,16 +604,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/arrangements/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/arrangements/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1065">
@@ -771,7 +790,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -814,21 +832,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1498816676000" expanded="true" signature="26:607" ph="{% block content ... %}" />
-            <marker date="1498816676000" expanded="true" signature="49:607" ph="..." />
-            <marker date="1498816676000" expanded="true" signature="58:607" ph="..." />
-            <marker date="1498816676000" expanded="true" signature="64:591" ph="..." />
-            <marker date="1498816676000" expanded="true" signature="120:584" ph="..." />
-            <marker date="1498816676000" expanded="true" signature="165:324" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/arrangements/templates/signup.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="11" lean-forward="false" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+        <state relative-caret-position="285">
+          <caret line="19" column="11" lean-forward="false" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -849,29 +859,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/arrangements/templates/set_info.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/arrangements/templates/type_in_single.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="28" lean-forward="false" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-          <folding>
-            <marker date="1498816677000" expanded="true" signature="344:386" ph="{% buttons submit=' 保存' ... %}" />
-            <marker date="1498816677000" expanded="true" signature="410:456" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/arrangements/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
-          <caret line="20" column="11" lean-forward="false" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+          <caret line="25" column="11" lean-forward="false" selection-start-line="25" selection-start-column="11" selection-end-line="25" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -887,43 +878,66 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-67">
           <caret line="4" column="16" lean-forward="false" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/arrangements/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="21" column="37" lean-forward="false" selection-start-line="21" selection-start-column="37" selection-end-line="21" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/arrangements/my_function.py" />
-    <entry file="file://$PROJECT_DIR$/arrangements/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/arrangements/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="131">
-          <caret line="17" column="85" lean-forward="true" selection-start-line="17" selection-start-column="85" selection-end-line="17" selection-end-column="85" />
+        <state relative-caret-position="255">
+          <caret line="18" column="18" lean-forward="false" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/arrangements/templates/set_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="19" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arrangements/templates/message.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="11" lean-forward="false" selection-start-line="10" selection-start-column="11" selection-end-line="10" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arrangements/templates/type_in_single.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="28" lean-forward="false" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arrangements/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="26" column="55" lean-forward="false" selection-start-line="26" selection-start-column="55" selection-end-line="26" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/arrangements/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="26" column="50" lean-forward="false" selection-start-line="26" selection-start-column="50" selection-end-line="26" selection-end-column="50" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/arrangements/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-632">
-          <caret line="206" column="40" lean-forward="false" selection-start-line="206" selection-start-column="40" selection-end-line="206" selection-end-column="40" />
+        <state relative-caret-position="74">
+          <caret line="144" column="23" lean-forward="false" selection-start-line="144" selection-start-column="23" selection-end-line="144" selection-end-column="23" />
           <folding>
             <element signature="e#0#64#0" expanded="true" />
           </folding>

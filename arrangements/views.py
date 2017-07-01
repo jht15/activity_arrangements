@@ -138,70 +138,62 @@ def to_list(request):
 @login_required
 def search_submit(request):
     form = SearchForm(request.POST) if request.method == 'POST' else None
-    if form and form.is_valid():
-
+    if form and form.is_valid() and form.has_changed():
         activities = []
         for item in auth.get_user(request).activities.all():
-            activities.append(item)
-
-        if form.name and form.name != '':
-            for item in activities:
-                if item.name != form.name:
-                    item.is_search = False
-                    item.save()
-                    activities.remove(item)
-        if form.min_start_time and form.min_start_time != '':
-            for item in activities:
-                if (item.start_time - form.min_start_time).seconds < 0:
-                    item.is_search = False
-                    item.save()
-                    activities.remove(item)
-        if form.max_start_time and form.max_start_time != '':
-            for item in activities:
-                if (item.start_time - form.max_start_time).seconds > 0:
-                    item.is_search = False
-                    item.save()
-                    activities.remove(item)
-        if form.min_end_time and form.min_end_time != '':
-            for item in activities:
-                if (item.end_time - form.min_end_time).seconds < 0:
-                    item.is_search = False
-                    item.save()
-                    activities.remove(item)
-        if form.max_end_time and form.max_end_time != '':
-            for item in activities:
-                if (item.end_time - form.max_end_time).seconds > 0:
-                    item.is_search = False
-                    item.save()
-                    activities.remove(item)
-
-        if form.place and form.place != '':
-            for item in activities:
-                if item.place != form.place:
-                    item.is_search = False
-                    item.save()
-                    activities.remove(item)
-        if form.type and form.type != '':
-            for item in activities:
-                if item.type != form.type:
-                    item.is_search = False
-                    item.save()
-                    activities.remove(item)
-        if form.min_priority and form.min_priority != '':
-            for item in activities:
-                if item.priority < form.min_priority:
-                    item.is_search = False
-                    item.save()
-                    activities.remove(item)
-        if form.min_enthusiasm and form.min_enthusiasm != '':
-            for item in activities:
-                if item.enthusiasm < form.min_enthusiasm:
-                    item.is_search = False
-                    item.save()
-                    activities.remove(item)
-        for item in activities:
             item.is_search = True
-            item.save
+            item.save()
+            activities.append(item)
+        if form.cleaned_data['name'] and form.cleaned_data['name'] != '':
+            for item in activities:
+
+                if item.name != form.cleaned_data['name']:
+
+                    item.is_search = False
+                    item.save()
+
+        if form.cleaned_data['min_start_time'] and form.cleaned_data['min_start_time'] != '':
+            for item in activities:
+                if (item.start_time - form.cleaned_data['min_start_time']).seconds < 0:
+                    item.is_search = False
+                    item.save()
+        if form.cleaned_data['max_start_time'] and form.cleaned_data['max_start_time'] != '':
+            for item in activities:
+                if (item.start_time - form.cleaned_data['max_start_time']).seconds > 0:
+                    item.is_search = False
+                    item.save()
+        if form.cleaned_data['min_end_time'] and form.cleaned_data['min_end_time'] != '':
+            for item in activities:
+                if (item.end_time - form.cleaned_data['min_end_time']).seconds < 0:
+                    item.is_search = False
+                    item.save()
+        if form.cleaned_data['max_end_time'] and form.cleaned_data['max_end_time'] != '':
+            for item in activities:
+                if (item.end_time - form.cleaned_data['max_end_time']).seconds > 0:
+                    item.is_search = False
+                    item.save()
+
+        if form.cleaned_data['place'] and form.cleaned_data['place'] != '':
+            for item in activities:
+                if item.place != form.cleaned_data['place']:
+                    item.is_search = False
+                    item.save()
+        if form.cleaned_data['type'] and form.cleaned_data['type'] != '':
+            for item in activities:
+                if item.type != form.cleaned_data['type']:
+                    item.is_search = False
+                    item.save()
+        if form.cleaned_data['min_priority'] and form.cleaned_data['min_priority'] != '':
+            for item in activities:
+                if item.priority < form.cleaned_data['min_priority']:
+                    item.is_search = False
+                    item.save()
+        if form.cleaned_data['min_enthusiasm'] and form.cleaned_data['min_enthusiasm'] != '':
+            for item in activities:
+                if item.enthusiasm < form.cleaned_data['min_enthusiasm']:
+                    item.is_search = False
+                    item.save()
+
         messages.info(request, '搜索完成！')
     else:
         messages.warning(request, '搜索失败！')
@@ -214,7 +206,7 @@ def arrange(request):
     activities = []
     for activity in auth.get_user(request).activities.all():
         if activity.is_chosen:
-            activities.add(activity)
+            activities.append(activity)
 
 
 
@@ -253,7 +245,7 @@ def type_in_multi(request):
 def type_in_multi_submit(request):
     form = FileForm(request.POST) if request.method == 'POST' else None
     if form.is_valid():
-        file = form.file
-
+        file = form.fields['file']
+    
     return redirect('type-in-multi')
 

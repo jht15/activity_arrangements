@@ -11,9 +11,13 @@ from datetime import datetime
 
 def index(request):
     if auth.get_user(request).is_authenticated:
-        return render(request, 'index.html', {'user_info': auth.get_user(request).user_info})
+        arranged_list = []
+        for activity in auth.get_user(request).activities.all():
+            if activity.is_arranged:
+                arranged_list.append(activity)
+        return render(request, 'index.html', {'user_info': auth.get_user(request).user_info, 'arranged_list': arranged_list})
     else:
-        return render(request, 'index.html', {'user_info': None})
+        return render(request, 'index.html', {'user_info': None, 'arranged_list': None})
 
 
 def login(request):

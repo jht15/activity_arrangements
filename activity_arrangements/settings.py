@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+from datetime import timedelta
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'arrangements',
     'bootstrap3',
+    'djcelery',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +134,31 @@ DATABASES = {
         'PASSWORD': '0610',
     }
 }
+
+# celery settings
+# celery中间人 redis://redis服务所在的ip地址:端口/数据库号
+BROKER_URL = 'redis://localhost:6379/0'
+# celery结果返回，可用于跟踪结果
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+
+# celery内容等消息的格式设置
+CELERY_ACCEPT_CONTENT = ['application/json', ]
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+# celery时区设置，使用settings中TIME_ZONE同样的时区
+CELERY_TIMEZONE = TIME_ZONE
+CELERY_IMPORTS = ['arrangements.tasks', ]
+CELERYBEAT_SCHEDULE = {
+    'check-every-hour': {
+        'task': 'tasks.check',
+        'schedule': timedelta(hours=1),
+        'args': ()
+    },
+}
+
+EMAIL_HOST = 'smtp.sina.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'thss_arrange@sina.com'
+EMAIL_HOST_PASSWORD = 'jianghaotian'
+EMAIL_USE_TLS = True

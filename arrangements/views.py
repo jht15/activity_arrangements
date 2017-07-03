@@ -4,9 +4,8 @@ from .forms import UserInfoForm, ActivityForm, SearchForm, FileForm
 from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.http import require_POST
 from django.contrib import messages
-from datetime import datetime
+from django.utils import timezone
 
 
 def index(request):
@@ -61,7 +60,8 @@ def logout(request):
 @login_required
 def set_info(request):
     user_info = auth.get_user(request).user_info
-    return render(request, 'set_info.html', {'user_info': user_info, 'form_info': UserInfoForm()})
+    return render(request, 'set_info.html', {'user_info': user_info, 'form_info': UserInfoForm({
+        'nickname': user_info.nickname, 'gender': user_info.gender, 'email': user_info.email})})
 
 
 @login_required
@@ -130,13 +130,43 @@ def choose_activity_from_list(request, activity_id):
 @login_required
 def activity_info(request, activity_id):
     activity = get_object_or_404(Activity, pk=activity_id)
+    form = ActivityForm({'name': activity.name, 'start_time': activity.start_time, 'end_time': activity.end_time,
+                         'priority': activity.priority, 'place': activity.place, 'enthusiasm': activity.enthusiasm,
+                         'type': activity.type, 'content': activity.content})
+    return render(request, 'activity.html', {'activity': activity, 'form': form})
 
-    return render(request, 'activity.html', {'activity': activity})
+
+@login_required
+def activity_info_submit(request, activity_id):
+    activity = get_object_or_404(Activity, pk=activity_id)
+    form = ActivityForm(request.POST) if request.method == 'POST' else None
+    if form.is_valid():
+        activity.name = form.cleaned_data['name']
+        activity.start_time = form.cleaned_data['start_time']
+        activity.end_time = form.cleaned_data['end_time']
+        activity.priority = form.cleaned_data['priority']
+        activity.place = form.cleaned_data['place']
+        activity.enthusiasm = form.cleaned_data['enthusiasm']
+        activity.type = form.cleaned_data['type']
+        activity.content = form.cleaned_data['content']
+        activity.is_arranged = False
+        activity.is_search = False
+        activity.is_chosen = False
+        activity.save()
+        messages.info(request, '信息保存成功！')
+    else:
+        messages.warning(request,'信息更改失败！')
+    return redirect('activity-info')
 
 
 @login_required
 def to_list(request):
     return redirect('activities-list')
+
+
+@login_required
+def to_search(request):
+    return render(request, 'search.html', {'search_form': SearchForm()})
 
 
 @login_required
@@ -158,22 +188,22 @@ def search_submit(request):
 
         if form.cleaned_data['min_start_time'] and form.cleaned_data['min_start_time'] != '':
             for item in activities:
-                if (item.start_time - form.cleaned_data['min_start_time']).seconds < 0:
+                if item.start_time < form.cleaned_data['min_start_time']:
                     item.is_search = False
                     item.save()
         if form.cleaned_data['max_start_time'] and form.cleaned_data['max_start_time'] != '':
             for item in activities:
-                if (item.start_time - form.cleaned_data['max_start_time']).seconds > 0:
+                if item.start_time > form.cleaned_data['max_start_time']:
                     item.is_search = False
                     item.save()
         if form.cleaned_data['min_end_time'] and form.cleaned_data['min_end_time'] != '':
             for item in activities:
-                if (item.end_time - form.cleaned_data['min_end_time']).seconds < 0:
+                if item.end_time < form.cleaned_data['min_end_time']:
                     item.is_search = False
                     item.save()
         if form.cleaned_data['max_end_time'] and form.cleaned_data['max_end_time'] != '':
             for item in activities:
-                if (item.end_time - form.cleaned_data['max_end_time']).seconds > 0:
+                if item.end_time > form.cleaned_data['max_end_time']:
                     item.is_search = False
                     item.save()
 
@@ -215,7 +245,7 @@ def arrange(request):
 
     arrange_list = []
     disarrange_list = []
-    activities.sort(key = lambda a:(-a.priority, a.end_time))
+    activities.sort(key=lambda a: (-a.priority, a.end_time))
     for activity in activities:
         flag = 1
         for aa in arrange_list:
@@ -235,7 +265,7 @@ def arrange(request):
 
 @login_required
 def type_in_single(request):
-    form = ActivityForm()
+    form = ActivityForm({'start_time': timezone.now()})
     return render(request, 'type_in_single.html', {'form': form})
 
 
@@ -243,6 +273,10 @@ def type_in_single(request):
 def type_in_single_submit(request):
     form = ActivityForm(request.POST) if request.method == 'POST' else None
     if form.is_valid():
+        if form.cleaned_data['start_time'] > form.cleaned_data['end_time']:
+            messages.warning(request, '结束时间不能早于开始时间！')
+            return redirect('type-in-single')
+
         activity = form.save(commit=False)
         activity.user = request.user
         activity.save()
@@ -270,7 +304,7 @@ def type_in_multi_submit(request):
         count = 0
         while True:
             form_name = file.readline()
-            form_start_time = file.readline() if form_name  else None
+            form_start_time = file.readline() if form_name else None
             form_end_time = file.readline() if form_start_time else None
             form_priority = file.readline() if form_end_time else None
             form_place = file.readline() if form_priority else None
@@ -285,6 +319,8 @@ def type_in_multi_submit(request):
                                           'place': form_place, 'enthusiasm': int(form_enthusiasm),
                                           'type': form_type, 'content': form_content})
             if activity_form.is_valid():
+                if activity_form.cleaned_data['start_time'] > activity_form.cleaned_data['end_time']:
+                    continue
                 count += 1
                 activity = activity_form.save(commit=False)
                 activity.user = request.user

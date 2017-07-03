@@ -2,26 +2,30 @@
 {% block content %}
 {% if user.is_authenticated %}
 <div class="user_info pre">
-	<p><div class="user_nickname">{{user_info.nickname}}</div>
-	<div class="user_gender">
+	</br>
+	</br>
+	</br>
+	<h4 class="user_nickname" style="color:#6699FF;font-family:STXinwei">你的大名：{{user_info.nickname}}</h4>
+	<h4 class="user_gender" style="color:#6699FF;font-family:STXinwei">
+	你的属性：
 	{%if user_info.gender == 'M'%}
-		Male
+		妹纸
 	{% else %}
-		Female
+		汉纸
 	{% endif %}
-	</div>
-	<div class="user_email">{{user_info.email}}</div>
-	</p>
+	</h4>
+	<h4 class="user_email" style="color:#6699FF;font-family:STXinwei">你的邮箱：{{user_info.email}}</h4>
 	</br>
 	</br>
-	<a href="{% url 'activities-list' %}"><font size="4">我的活动列表</font></a>
+	<a href="{% url 'activities-list' %}"><font size="4" style="color:#3333CC;font-family:STXinwei"><u>我的活动列表</u></font></a>
 	</br>
 	</br>
 </div>
 {% else %}
 <div>
-	<div>欢迎来到“今儿该怎么过”，请登录</div>
-	<a href="{% url 'login' %}">登录</a>
+</br>
+	<div><font size="5" style="color:#6699FF;font-family:STXinwei">欢迎来到“今儿该怎么过”，请登录</font></div>
+	</br>
 </div>
 {% endif %}
 {% endblock %}

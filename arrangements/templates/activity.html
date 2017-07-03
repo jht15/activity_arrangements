@@ -1,20 +1,24 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
-{% block content %}
-<div class=" activity">
-	<div class=" activity">
-		<h3>活动名称：{{activity.name}}</h3>
-		<h4>开始时间： {% bootstrap_icon 'activity.start_time'%}{{activity.start_time}}</h4>
-		<h4>结束时间： {% bootstrap_icon 'activity.end_time' %}{{activity.end_time}}</h4>
-		<h4>优先级：{% bootstrap_icon 'activity.priority' %}{{activity.priority}}</h4>
-		<h4>地点：{% bootstrap_icon 'activity.place' %}{{activity.place}}</h4>
-		<h4>热情度：{% bootstrap_icon 'activity.enthusiasm' %}{{activity.enthusiasm}}</h4>
-		<h4>类别：{% bootstrap_icon 'activity.type' %}{{activity.type}}</h4>
+{% block content%}
+{% include 'messages.html' %}
+<h3><font style="font-family:STXinwei">活动详情</font></h3>
+<div class="panel panel-default" style="background-color:#CCFFCC">
+	<div class="panel-heading"><font style="font-family:STXinwei">活动详情</font></div>
+	<div class="panel-body"style="font-family:STXinwei">
+	<form method="POST" action="{% url 'activity-info-submit' activity.id %}"style="font-family:STXinwei">
+		{% csrf_token %}
+		{% bootstrap_form form layout='inline'%}
+		<div style="width:5%;float:left">
+		{% buttons submit='保存' %}{% endbuttons %}
+		</div>
+	</form>
+	<div style="width:5%;float:left">
+	<form method="POST" action="{% url 'to-list' %}"style="font-family:STXinwei">
+	{% csrf_token %}
+	{% buttons submit='返回' %}{% endbuttons %}
+	</form>
 	</div>
-	<div class="content">
-		<h4>内容：</h4>
-		<h4>{{ activity.content }}</h4>
 	</div>
-	<div class="panel-footer"></div>
 </div>
 {% endblock %}

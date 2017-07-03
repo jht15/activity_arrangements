@@ -2,23 +2,27 @@
 {% load bootstrap3 %}
 {% block content%}
 {% include 'messages.html' %}
-<h3>录入活动</h3>
+<h3><font style="font-family:STXinwei">录入活动</font></h3>
 <div class="panel panel-default">
-	<div class="panel-heading">录入活动</div>
+	<div class="panel-heading"><font style="font-family:STXinwei">录入活动</font></div>
 	<div class="panel-body">
-		<form method="POST" action="{% url 'type-in-single-submit' %}"> 
+		<form method="POST" action="{% url 'type-in-single-submit' %}"style="font-family:STXinwei"> 
 			{% csrf_token %}
 			{% for field in form %}
 			{% bootstrap_field field %}
 			{% endfor %}
-			{% buttons submit=' 保存' %}{% endbuttons %}
+			<div style="width:8%;float:left">
+			{% buttons submit='保存' %}{% endbuttons %}
+			</div>
 		</form>
-	</div>
-	<div>
-	<form method="POST" action="{% url 'to-list' %}"> 
+	<div style="width:8%;float:left">
+	<form method="POST" action="{% url 'to-list' %}"style="font-family:STXinwei"> 
 	{% csrf_token %}
 	{% buttons submit='返回' %}{% endbuttons %}
 	</form>
 	</div>
+	</div>
+	</br>
+	</br>
 </div>
 {% endblock %}

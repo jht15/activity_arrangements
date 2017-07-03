@@ -2,6 +2,7 @@ from django import forms
 from .models import Activity, UserInfo
 from django.core.files.uploadedfile import SimpleUploadedFile
 
+
 class UserInfoForm(forms.ModelForm):
     class Meta:
         model = UserInfo
@@ -20,7 +21,6 @@ class SearchForm(forms.Form):
     max_start_time = forms.DateTimeField(required=False)
     min_end_time = forms.DateTimeField(required=False)
     max_end_time = forms.DateTimeField(required=False)
-
     place = forms.CharField(max_length=50, required=False)
     type = forms.CharField(max_length=10, required=False)
     min_priority = forms.IntegerField(required=False)

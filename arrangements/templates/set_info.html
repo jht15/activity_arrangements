@@ -2,15 +2,24 @@
 {% load bootstrap3 %}
 {% block content%}
 {% include 'messages.html' %}
-<h3>set-info</h3>
-<div class="panel panel-default">
-	<div class="panel-heading">修改信息</div>
+<h3><font style="font-family:STXinwei">个人信息</font></h3>
+<div class="panel panel-default" style="background-color:#CCFFCC">
+	<div class="panel-heading"><font style="font-family:STXinwei">修改信息</font></div>
 	<div class="panel-body">
-		<form method="POST" action="{% url 'set-info-submit' %}"> 
-			{% csrf_token %}
+	<form method="POST" action="{% url 'set-info-submit' %}"style="font-family:STXinwei"> 
+			{% csrf_token %}		
 			{% bootstrap_form form_info layout='inline'%}
+			<div style="width:9%;float:left">
 			{% buttons submit=' 保存' %}{% endbuttons %}
+			</div>
+	</form>
+	<div style="width:9%;float:left">
+		<form method="POST" action="{% url 'to-index' %}"style="font-family:STXinwei"> 
+				{% csrf_token %}
+			{% buttons submit='返回' %}{% endbuttons %}
 		</form>
 	</div>
+	</div>
+
 </div>
 {% endblock %}

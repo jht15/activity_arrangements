@@ -2,33 +2,42 @@
 {% load bootstrap3 %}
 {% block content %}
 {% include 'messages.html' %}
-</br>
-<div style="float:right">
-	<form method="POST" action="{% url 'type-in-single' %}"> 
-	{% csrf_token %}
-	{% buttons submit='单个活动录入' %}{% endbuttons %}
-	</form>
-	<form method="POST" action="{% url 'type-in-multi' %}"> 
+
+<div style="width:10%;float:right">
+	<form method="POST" action="{% url 'type-in-multi' %}"style="color:#6699FF;font-family:STXinwei"> 
 	{% csrf_token %}
 	{% buttons submit='多个活动录入' %}{% endbuttons %}
 	</form>
 </div>
+<div style="width:10%;float:right">
+	<form method="POST" action="{% url 'type-in-single' %}"style="color:#6699FF;font-family:STXinwei"> 
+	{% csrf_token %}
+	{% buttons submit='单个活动录入' %}{% endbuttons %}
+	</form>
+</div>
+
+
 </br>
 </br>
-</br>
-<div><h3>未选择活动</h3><div>
-<table class="table"><tbody>
+<div class="panel panel-default" style="background-color:#FFFFBB" border="0">  
+<div class="panel-body">
+
+<div class="col-md-6">
+<div class="panel panel-default" style="background-color:#FFFFA6">  
+<div class="panel-body">
+<div><h3><font style="color:#6699FF;font-family:STXinwei">未选择活动</font></h3></div>
+<table class="table" border="1"  width="100%" cellpadding="0" cellspacing="1" bordercolor="#FFFFA6"><tbody>
 	{% for activity in unchosen_search_list %}
 	<tr>
-		<td><a href="{% url 'activity-info' activity.id %}"><font color="red">{{activity.name}}</font></a>
-		<div class="info">
-			{% bootstrap_icon 'start_time' %}<font color="red">{{activity.start_time}}</font>
-			{% bootstrap_icon 'end_time' %}<font color="red">{{activity.end_time}}</font>
-			{% bootstrap_icon 'place' %}<font color="red">{{activity.place}}</font>
+		<td style="background-color:#FFCCCC;border-radius:15px"><a href="{% url 'activity-info' activity.id %}">&nbsp;<font size = "4" style="color:#3333CC;font-family:STXinwei"><u>{{activity.name}}</u></font></a>
+		<div class="info" style="color:#6699FF;font-family:STXinwei">
+			{% bootstrap_icon 'start_time' %}{{activity.start_time}}
+			{% bootstrap_icon 'end_time' %}{{activity.end_time}}
+			{% bootstrap_icon 'place' %}{{activity.place}}
 		</div>
 		<div>
-			<a href="{% url 'choose-from-list' activity.id%}">选择</a>
-			<a href="{% url 'delete-activity' activity.id%}">删除</a>
+			<a href="{% url 'choose-from-list' activity.id%}"><font style="color:#3333CC;font-family:STXinwei"><u>选择</u></font></a>
+			<a href="{% url 'delete-activity' activity.id%}"><font style="color:#3333CC;font-family:STXinwei"><u>删除</u></font></a>
 		</div>
 		</br>
 		</td>
@@ -37,18 +46,47 @@
 </tbody></table>
 
 
-<table><tbody>
+<table border="1"  width="100%" cellpadding="0" cellspacing="1" bordercolor="#FFFFA6"><tbody>
 	{% for activity in unchosen_unsearch_list %}
 	<tr>
-		<td><a href="{% url 'activity-info' activity.id %}">{{activity.name}}</a>
-		<div class="info">
+	
+		<td style="background-color:#CCFFCC;border-radius:15px"><a href="{% url 'activity-info' activity.id %}">&nbsp;<font size = "4" style="color:#3333CC;font-family:STXinwei"><u>
+		{{activity.name}}</u></font></a>
+		<div class="info"style="color:#6699FF;font-family:STXinwei">
+
 			{% bootstrap_icon 'start_time' %}{{activity.start_time}}
 			{% bootstrap_icon 'end_time' %}{{activity.end_time}}
 			{% bootstrap_icon 'place' %}{{activity.place}}
 		</div>
 		<div>
-			<a href="{% url 'choose-from-list' activity.id%}">选择</a>
-			<a href="{% url 'delete-activity' activity.id%}">删除</a>
+			<a href="{% url 'choose-from-list' activity.id%}"><font style="color:#3333CC;font-family:STXinwei"><u>选择</u></font></a>
+			<a href="{% url 'delete-activity' activity.id%}"><font style="color:#3333CC;font-family:STXinwei"><u>删除</u></font></a>
+		</div>
+		</br>
+		</td>
+	</tr>
+	{% endfor %}
+</table></tbody>
+</div>
+</div>
+</div>
+
+<div class="col-md-6">
+<div class="panel panel-default" style="background-color:#FFFFA6">  
+<div class="panel-body">
+<h3><font style="color:#6699FF;font-family:STXinwei">已选择活动</font></h3>
+<table border="1"  width="100%" cellpadding="0" cellspacing="1" bordercolor="#FFFFA6"><tbody>
+	{% for activity in chosen_search_list %}
+	<tr>
+		<td style="background-color:#FFCCCC;border-radius:15px"><a href="{% url 'activity-info' activity.id %}">&nbsp;<font size = "4" style="color:#3333CC;font-family:STXinwei"><u>{{activity.name}}</u></font></a>
+		<div class="info" style="color:#6699FF;font-family:STXinwei">
+			{% bootstrap_icon 'start_time' %}{{activity.start_time}}
+			{% bootstrap_icon 'end_time' %}{{activity.end_time}}
+			{% bootstrap_icon 'place' %}{{activity.place}}
+		</div>
+		<div>
+			<a href="{% url 'choose-from-list' activity.id%}"><font style="color:#3333CC;font-family:STXinwei"><u>放弃选择</u></font></a>
+			<a href="{% url 'delete-activity' activity.id%}"><font style="color:#3333CC;font-family:STXinwei"><u>删除</u></font></a>
 		</div>
 		</br>
 		</td>
@@ -56,66 +94,41 @@
 	{% endfor %}
 </table></tbody>
 
-</br>
 
+<table border="1"  width="100%" cellpadding="0" cellspacing="1" bordercolor="#FFFFA6"><tbody>
+	{% for activity in chosen_unsearch_list %}
+	<tr>
+		<td style="background-color:#CCFFCC;border-radius:15px"><a href="{% url 'activity-info' activity.id %}">&nbsp;<font size = "4" style="color:#3333CC;font-family:STXinwei"><u>{{activity.name}}</u></font></a>
+		<div class="info"style="color:#6699FF;font-family:STXinwei">
+			{% bootstrap_icon 'start_time' %}{{activity.start_time}}
+			{% bootstrap_icon 'end_time' %}{{activity.end_time}}
+			{% bootstrap_icon 'place' %}{{activity.place}}
+		</div>
+		<div>
+			<a href="{% url 'choose-from-list' activity.id%}"><font style="color:#3333CC;font-family:STXinwei"><u>放弃选择</u></font></a>
+			<a href="{% url 'delete-activity' activity.id%}"><font style="color:#3333CC;font-family:STXinwei"><u>删除</u></font></a>
+		</div>
+		</br>
+		</td>
+	</tr>
+	{% endfor %}
+</tbody></table>
 <div>
-	<h3>已选择活动</h3>
-	<form method="POST" action="{% url 'arrange' %}"> 
+	<form method="POST" action="{% url 'arrange' %}"style="color:#6699FF;font-family:STXinwei"> 
 	{% csrf_token %}
 	{% buttons submit='对已选择活动进行安排' %}{% endbuttons %}
 	</form>
 </div>	
-<table><tbody>
-	{% for activity in chosen_search_list %}
-	<tr>
-		<td><a href="{% url 'activity-info' activity.id %}"><font color="red">{{activity.name}}</font></a>
-		<div class="info">
-			{% bootstrap_icon 'start_time' %}<font color="red">{{activity.start_time}}</font>
-			{% bootstrap_icon 'end_time' %}<font color="red">{{activity.end_time}}</font>
-			{% bootstrap_icon 'place' %}<font color="red">{{activity.place}}</font>
-		</div>
-		<div>
-			<a href="{% url 'choose-from-list' activity.id%}">放弃选择</a>
-			<a href="{% url 'delete-activity' activity.id%}">删除</a>
-		</div>
-		</br>
-		</td>
-	</tr>
-	{% endfor %}
-</table></tbody>
-
-
-<table><tbody>
-	{% for activity in chosen_unsearch_list %}
-	<tr>
-		<td><a href="{% url 'activity-info' activity.id %}">{{activity.name}}</a>
-		<div class="info">
-			{% bootstrap_icon 'start_time' %}{{activity.start_time}}
-			{% bootstrap_icon 'end_time' %}{{activity.end_time}}
-			{% bootstrap_icon 'place' %}{{activity.place}}
-		</div>
-		<div>
-			<a href="{% url 'choose-from-list' activity.id%}">放弃选择</a>
-			<a href="{% url 'delete-activity' activity.id%}">删除</a>
-		</div>
-		</br>
-		</td>
-	</tr>
-	{% endfor %}
-</tbody></table>
-<div>
-<h3>填写查找活动信息</h3>
+</div>
+</div>
 </div>
 
-<div class="panel panel-default">
-	<div class="panel-heading"填写查找活动信息</div>
-	<div class="panel-body">
-		<form method="POST" action="{% url 'search-submit' %}"> 
-			{% csrf_token %}
-			{% bootstrap_form search_form layout='inline'%}
-			{% buttons submit=' 确定' %}{% endbuttons %}
-		</form>
-	</div>
+<div class="col-md-12">
+	<div style="width:10%;float:left">
+	<form method="POST" action="{% url 'to-search' %}"style="color:#6699FF;font-family:STXinwei"> 
+	{% csrf_token %}
+	{% buttons submit='输入查找信息进行查找' %}{% endbuttons %}
+	</form>
 </div>
 
 {% endblock %}

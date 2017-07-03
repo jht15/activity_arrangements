@@ -1,19 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
 {% include 'messages.html' %}
-<h3>login<h3>
+<h3><font style="font-family:STXinwei">登录</font></h3>
 <div>
 	<form method="post" action="{% url 'authenticate' %}">
-	{% csrf_token %}
+		{% csrf_token %}
 		<div class="form-group">
-			<label for="username">username</label>
-			<input type="text" id="username" name="username" class="form_control" placeholder="username" required />
+			<label for="username" ><font size="4" style="color:#6699FF;font-family:STXinwei">用户名</font></label>
+			<input type="text" id="username" name="username"
+				class="form-control" placeholder="Username" style="width:50%; background-color:#F8F8F8 "  required/>
 		</div>
 		<div class="form-group">
-		<label for="password">password</label>
-		<input type="password" id="password" name="password" class="form_control" placeholder="password" required />
+			<label for="password"><font size="4" style="color:#6699FF;font-family:STXinwei">密码</font></label>
+			<input type="password" id="password" name="password"
+			class="form-control" placeholder="Password" style="width:50%; background-color:#F8F8F8" required
+			/>
 		</div>
-		<button type="submit" class="btn btn-primary">login</button>
+		<button type="submit" class="btn btn-primary"><font  style="font-family:STXinwei">登录</font></button>
 	</form>
 </div>
 {% endblock %}

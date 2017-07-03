@@ -1,10 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+{% block content%}
 
-</body>
-</html>
+<h3><font style="font-family:STXinwei">查找</font></h3>
+<div class="panel panel-default" style="background-color:#CCFFCC">
+	<div class="panel-heading"><font style="font-family:STXinwei">输入查找条件</font></div>
+	<div class="panel-body">
+	<form method="POST" action="{% url 'search-submit' %}"style="font-family:STXinwei">
+		{% csrf_token %}
+		{% bootstrap_form search_form layout='inline'%}
+		{% buttons submit='查找' %}{% endbuttons %}
+	</form>
+	</div>
+</div>
+{% endblock %}

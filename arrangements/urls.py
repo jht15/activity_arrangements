@@ -1,5 +1,9 @@
 from django.conf.urls import url
 from . import views
+import django
+from django.views.generic import UpdateView
+from .models import Activity, UserInfo
+from .forms import ActivityForm, UserInfoForm
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
@@ -25,6 +29,8 @@ urlpatterns = [
     url(r'^type_in_single/submit$', views.type_in_single_submit, name='type-in-single-submit'),
     url(r'^type_in_multi$', views.type_in_multi, name='type-in-multi'),
     url(r'^type_in_multi/submit$', views.type_in_multi_submit, name='type-in-multi-submit'),
+    url(r'^static/(?P<path>.*)', django.views.static.serve,
+        {'document_root': '/Users/JHT/Desktop/python/activity_arrangements/arrangements/static/img'}),
 
 ]
 

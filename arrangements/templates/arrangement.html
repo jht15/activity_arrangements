@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
 {% block content %}
-<div><h3>已安排活动</h3></div>
-<table class="table"><tbody>
+<div><h3><font style="font-family:STXinwei">已安排活动</font></h3></div>
+<table class="table" border="1"  width="100%" cellpadding="0" cellspacing="1" bordercolor="#FFFFCC"><tbody>
 	{% for activity in arrange_list %}
 	<tr>
-		<td><a href="{% url 'activity-info' activity.id %}"><font color="red">{{activity.name}}</font></a>
+		<td style="background-color:#FFCCCC;border-radius:15px"><a href="{% url 'activity-info' activity.id %}"><font size="4" style="color:#3333CC;font-family:STXinwei"><u>{{activity.name}}</u></font></a>
 		<div class="info">
-			{% bootstrap_icon 'start_time' %}<font color="red">{{activity.start_time}}</font>
-			{% bootstrap_icon 'end_time' %}<font color="red">{{activity.end_time}}</font>
-			{% bootstrap_icon 'place' %}<font color="red">{{activity.place}}</font>
+			{% bootstrap_icon 'start_time' %}<font style="color:#6699FF;font-family:STXinwei">{{activity.start_time}}</font>
+			{% bootstrap_icon 'end_time' %}<font style="color:#6699FF;font-family:STXinwei">{{activity.end_time}}</font>
+			{% bootstrap_icon 'place' %}<font style="color:#6699FF;font-family:STXinwei">{{activity.place}}</font>
 		</div>
 		</td>
 	</tr>
@@ -19,15 +19,15 @@
 <br>
 <br>
 
-<div><h3>未安排活动</h3></div>
-<table class="table"><tbody>
+<div><h3><font style="font-family:STXinwei">未安排活动</font></h3></div>
+<table class="table" border="1"  width="100%" cellpadding="0" cellspacing="1" bordercolor="#FFFFCC"><tbody>
 	{% for activity in disarrange_list %}
 	<tr>
-		<td><a href="{% url 'activity-info' activity.id %}"><font color="red">{{activity.name}}</font></a>
+		<td style="background-color:#CCFFCC;border-radius:15px"><a href="{% url 'activity-info' activity.id %}"><font size="4" style="color:#3333CC;font-family:STXinwei"><u>{{activity.name}}</u></font></a>
 		<div class="info">
-			{% bootstrap_icon 'start_time' %}<font color="red">{{activity.start_time}}</font>
-			{% bootstrap_icon 'end_time' %}<font color="red">{{activity.end_time}}</font>
-			{% bootstrap_icon 'place' %}<font color="red">{{activity.place}}</font>
+			{% bootstrap_icon 'start_time' %}<font style="color:#6699FF;font-family:STXinwei">{{activity.start_time}}</font>
+			{% bootstrap_icon 'end_time' %}<font style="color:#6699FF;font-family:STXinwei">{{activity.end_time}}</font>
+			{% bootstrap_icon 'place' %}<font style="color:#6699FF;font-family:STXinwei">{{activity.place}}</font>
 		</div>
 		</td>
 	</tr>
@@ -35,7 +35,7 @@
 </tbody></table>
 
 <div>
-	<form method="POST" action="{% url 'to-list' %}"> 
+	<form method="POST" action="{% url 'to-list' %}" style="font-family:STXinwei"> 
 	{% csrf_token %}
 	{% buttons submit='返回' %}{% endbuttons %}
 	</form>

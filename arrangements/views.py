@@ -104,8 +104,7 @@ def activities_list(request):
     return render(request, 'activities_list.html', {'chosen_search_list': chosen_search_list,
                                                     'chosen_unsearch_list': chosen_unsearch_list,
                                                     'unchosen_search_list': unchosen_search_list,
-                                                    'unchosen_unsearch_list': unchosen_unsearch_list,
-                                                    'search_form': SearchForm()
+                                                    'unchosen_unsearch_list': unchosen_unsearch_list
                                                     })
 
 
@@ -115,7 +114,6 @@ def delete_activity(request, activity_id):
     activity.delete()
     messages.info(request, '删除成功！')
     return redirect('activities-list')
-
 
 
 @login_required
@@ -140,6 +138,7 @@ def activity_info(request, activity_id):
 def activity_info_submit(request, activity_id):
     activity = get_object_or_404(Activity, pk=activity_id)
     form = ActivityForm(request.POST) if request.method == 'POST' else None
+    print(form)
     if form.is_valid():
         activity.name = form.cleaned_data['name']
         activity.start_time = form.cleaned_data['start_time']
@@ -155,8 +154,8 @@ def activity_info_submit(request, activity_id):
         activity.save()
         messages.info(request, '信息保存成功！')
     else:
-        messages.warning(request,'信息更改失败！')
-    return redirect('activity-info')
+        messages.warning(request, '信息更改失败！')
+    return redirect('activity-info', activity.id)
 
 
 @login_required

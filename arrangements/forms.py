@@ -1,6 +1,6 @@
 from django import forms
 from .models import Activity, UserInfo
-
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 class UserInfoForm(forms.ModelForm):
     class Meta:

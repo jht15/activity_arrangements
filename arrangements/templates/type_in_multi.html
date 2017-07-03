@@ -2,11 +2,12 @@
 {% load bootstrap3 %}
 {% block content%}
 {% include 'messages.html' %}
+
 <h3>录入活动</h3>
 <div class="panel panel-default">
 	<div class="panel-heading">录入活动</div>
 	<div class="panel-body">
-		<form method="POST" action="{% url 'type-in-multi-submit' %}"> 
+		<form enctype="multipart/form-data" method="POST" action="{% url 'type-in-multi-submit' %}">
 			{% csrf_token %}
 			{% for field in form %}
 			{% bootstrap_field field %}

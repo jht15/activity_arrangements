@@ -26,6 +26,7 @@ class Activity(models.Model):
     type = models.CharField(max_length=10)
     is_chosen = models.BooleanField(default=False)
     is_search = models.BooleanField(default=False)
+    is_arranged = models.BooleanField(default=False)
     content = models.TextField()
 
 # Create your models here.

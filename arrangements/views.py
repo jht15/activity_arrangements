@@ -200,18 +200,32 @@ def search_submit(request):
     return redirect('activities-list')
 
 
-
 @login_required
 def arrange(request):
     activities = []
     for activity in auth.get_user(request).activities.all():
+        activity.is_arranged = False
+        activity.save()
         if activity.is_chosen:
             activities.append(activity)
 
-
-
     arrange_list = []
     disarrange_list = []
+    activities.sort(key = lambda a:(-a.priority, a.end_time))
+    for activity in activities:
+        flag = 1
+        for aa in arrange_list:
+            if aa.start_time < activity.end_time and aa.end_time > activity.start_time:
+                flag = 0
+                break
+        if flag:
+            arrange_list.append(activity)
+            activity.is_arranged = True
+            activity.save()
+
+        else:
+            disarrange_list.append(activity)
+
     return render(request, 'arrangement.html', {'arrange_list': arrange_list, 'disarrange_list': disarrange_list})
 
 
@@ -228,7 +242,6 @@ def type_in_single_submit(request):
         activity = form.save(commit=False)
         activity.user = request.user
         activity.save()
-        form = ActivityForm()
         messages.info(request, '信息录入成功')
     else:
         messages.warning(request, '表单无效！')
@@ -243,9 +256,37 @@ def type_in_multi(request):
 
 @login_required
 def type_in_multi_submit(request):
-    form = FileForm(request.POST) if request.method == 'POST' else None
+    form = FileForm(request.POST, request.FILES) if request.method == 'POST' else None
     if form.is_valid():
-        file = form.fields['file']
-    
+        file = form.cleaned_data['file']
+        name = file.name
+        if name[-1] != 't' or name[-2] != 'x' or name[-3] != 't' or name[-4] != '.':
+            messages.warning(request, '请上传.txt文件！')
+            return redirect('type-in-multi')
+        count = 0
+        while True:
+            form_name = file.readline()
+            form_start_time = file.readline() if form_name  else None
+            form_end_time = file.readline() if form_start_time else None
+            form_priority = file.readline() if form_end_time else None
+            form_place = file.readline() if form_priority else None
+            form_enthusiasm = file.readline() if form_place else None
+            form_type = file.readline() if form_enthusiasm else None
+            form_content = file.readline() if form_type else None
+            if not form_content:
+                break
+
+            activity_form = ActivityForm({'name': form_name, 'start_time': form_start_time,
+                                          'end_time': form_end_time, 'priority': int(form_priority),
+                                          'place': form_place, 'enthusiasm': int(form_enthusiasm),
+                                          'type': form_type, 'content': form_content})
+            if activity_form.is_valid():
+                count += 1
+                activity = activity_form.save(commit=False)
+                activity.user = request.user
+                activity.save()
+            else:
+                break
+        messages.info(request, '录入了' + str(count) + '个有效的活动信息')
     return redirect('type-in-multi')
 

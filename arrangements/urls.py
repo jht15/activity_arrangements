@@ -1,9 +1,8 @@
 from django.conf.urls import url
 from . import views
 import django
-from django.views.generic import UpdateView
-from .models import Activity, UserInfo
-from .forms import ActivityForm, UserInfoForm
+from django.views import static
+
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),

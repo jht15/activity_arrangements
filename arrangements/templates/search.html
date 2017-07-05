@@ -9,8 +9,16 @@
 	<form method="POST" action="{% url 'search-submit' %}"style="font-family:STXinwei">
 		{% csrf_token %}
 		{% bootstrap_form search_form layout='inline'%}
+    <div style="width:8%;float:left">
 		{% buttons submit='查找' %}{% endbuttons %}
+    </div>
 	</form>
+    <div style="width:8%;float:left">
+		<form method="POST" action="{% url 'to-list' %}"style="font-family:STXinwei">
+		{% csrf_token %}
+		{% buttons submit='返回' %}{% endbuttons %}
+		</form>
+	</div>
 	</div>
 </div>
 {% endblock %}

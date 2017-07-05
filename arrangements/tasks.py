@@ -11,13 +11,17 @@ def check():
     print('hello')
     activities = Activity.objects.all()
     time = timezone.now()
+    print(time)
     for activity in activities:
         print('name' + activity.name)
+        print('start')
+        print(activity.start_time)
         print((activity.start_time - time).days)
         print((activity.start_time - time).seconds)
+        print(activity.is_arranged)
         if activity.is_arranged and not (activity.start_time - time).days and (activity.start_time - time).seconds > \
                 82800 and activity.user.user_info.email:
-            send_status = send_mail('活动提醒', '您的活动' + activity.name + '将在一天内开始！', 'thss_arrange@sina.com',
+            send_status = send_mail('活动提醒', '尊敬的' + activity.user.user_info.nickname + '您的活动' + activity.name + '将在一天内开始！', 'thss_arrange@sina.com',
                                     [activity.user.user_info.email])
             print('发送：')
             print(send_status)

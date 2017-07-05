@@ -152,7 +152,7 @@ CELERY_IMPORTS = ['arrangements.tasks', ]
 CELERYBEAT_SCHEDULE = {
     'check-every-hour': {
         'task': 'tasks.check',
-        'schedule': timedelta(hours=1),
+        'schedule': timedelta(seconds=10),
         'args': ()
     },
 }

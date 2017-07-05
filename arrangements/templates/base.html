@@ -6,7 +6,7 @@
     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 </head><body style="background-color:#FFFFCC" >
     <div class="container">
-		<img src="static/img/title.jpeg" alt="title" height="45" width="490"/>
+		<img src="{% static 'img/title.jpeg' %}" alt="title" height="45" width="490"/>
         <section id="content">{% block content %}{%endblock %}</section>
         <footer class="footer"><p>&copy; 2017 今儿该怎么过</p></footer>
         <nav>

@@ -2,27 +2,74 @@
 {% load bootstrap3 %}
 {% block content%}
 {% include 'messages.html' %}
+
 <h3><font style="font-family:STXinwei">录入活动</font></h3>
 <div class="panel panel-default">
 	<div class="panel-heading"><font style="font-family:STXinwei">录入活动</font></div>
 	<div class="panel-body">
-		<form method="POST" action="{% url 'type-in-single-submit' %}"style="font-family:STXinwei"> 
+		<form enctype="multipart/form-data" method="POST" action="{% url 'type-in-single-submit' %}"style="font-family:STXinwei">
 			{% csrf_token %}
-			{% for field in form %}
-			{% bootstrap_field field %}
-			{% endfor %}
-			<div style="width:8%;float:left">
-			{% buttons submit='保存' %}{% endbuttons %}
-			</div>
-		</form>
+	<div class="form-group">
+	活动名称<input type="text" class="form-control" name="name" id="name">
+	</div>
+
+    <div>开始时间</div></br>
+    <div class="input-group date form_datetime col-md-5" data-date="" data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" type="text" name="start_time"value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input1" value="" /><br/>
+
+    </br>
+    <div>结束时间</div></br>
+        <div class="input-group date form_datetime col-md-5" data-date="" data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" type="text" name="end_time"value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input1" value="" /><br/>
+
+    </br>
+
+	<div class="form-group">
+		活动优先级:<input type="text" class="form-control" name="priority" id="priority">
+	</div>
+	<div class="form-group">
+		活动地点：<input type="text" class="form-control" name="place" id="place">
+	</div>
+	<div class="form-group">
+		活动热情：<input type="text" class="form-control" name="enthusiasm" id="enthusiasm">
+	</div>
+	<div class="form-group">
+		活动种类：<input type="text" class="form-control" name="type" id="type">
+	</div>
+	<div class="form-group">
+		活动内容：<textarea class="form-control" name="content" id="content" rows="10"></textarea>
+	</div>
+		<div style="width:8%;float:left">
+		{% buttons submit='提交' %}{% endbuttons %}
+		</div>
+	</form>
+	
 	<div style="width:8%;float:left">
-	<form method="POST" action="{% url 'to-list' %}"style="font-family:STXinwei"> 
+	<form method="POST" action="{% url 'to-list' %}"style="font-family:STXinwei">
 	{% csrf_token %}
 	{% buttons submit='返回' %}{% endbuttons %}
 	</form>
 	</div>
 	</div>
-	</br>
-	</br>
 </div>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
+</script>
 {% endblock %}

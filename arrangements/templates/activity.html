@@ -2,17 +2,54 @@
 {% load bootstrap3 %}
 {% block content%}
 {% include 'messages.html' %}
+
 <h3><font style="font-family:STXinwei">活动详情</font></h3>
 <div class="panel panel-default" style="background-color:#CCFFCC">
 	<div class="panel-heading"><font style="font-family:STXinwei">活动详情</font></div>
 	<div class="panel-body"style="font-family:STXinwei">
 	<form method="POST" action="{% url 'activity-info-submit' activity.id %}"style="font-family:STXinwei">
-		{% csrf_token %}
-		{% bootstrap_form form layout='inline'%}
+	{% csrf_token %}
+	<div class="form-group">
+		活动名称<input type="text" class="form-control" name="name" value="{{form.name.value}}" id="name">
+	</div>
+    <div>开始时间</div></br>
+    <div class="input-group date form_datetime col-md-5" data-date="" data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" type="text" name="start_time"value="{{ form.start_time.value.year}}/{{ form.start_time.value.month }}/{{ form.start_time.value.day }} {{ form.start_time.value.hour}}:{{ form.start_time.value.minute}}" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input1" value="" /><br/>
+
+    </br>
+    <div>结束时间</div></br>
+        <div class="input-group date form_datetime col-md-5" data-date="" data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" type="text" name="end_time"value="{{ form.end_time.value.year}}/{{ form.end_time.value.month }}/{{ form.end_time.value.day }} {{ form.end_time.value.hour}}:{{ form.end_time.value.minute}}" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input1" value="" /><br/>
+
+    </br>
+	<div class="form-group">
+		活动优先级:<input type="text" class="form-control" name="priority" value="{{form.priority.value}}" id="priority">
+	</div>
+	<div class="form-group">
+		活动地点：<input type="text" class="form-control" name="place" value="{{form.place.value}}" id="place">
+	</div>
+	<div class="form-group">
+		活动热情：<input type="text" class="form-control" name="enthusiasm" value="{{form.enthusiasm.value}}" id="enthusiasm">
+	</div>
+	<div class="form-group">
+		活动种类：<input type="text" class="form-control" name="type" value="{{form.type.value}}" id="type">
+	</div>
+	<div class="form-group">
+		活动内容：<textarea class="form-control" name="content" id="content" rows="10">{{form.content.value}}</textarea>
+	</div>
 		<div style="width:5%;float:left">
-		{% buttons submit='保存' %}{% endbuttons %}
+		{% buttons submit='提交' %}{% endbuttons %}
 		</div>
 	</form>
+	
 	<div style="width:5%;float:left">
 	<form method="POST" action="{% url 'to-list' %}"style="font-family:STXinwei">
 	{% csrf_token %}
@@ -21,4 +58,16 @@
 	</div>
 	</div>
 </div>
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
+</script>
 {% endblock %}

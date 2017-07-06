@@ -140,6 +140,7 @@ def activity_info_submit(request, activity_id):
     activity = get_object_or_404(Activity, pk=activity_id)
     form = ActivityForm(request.POST) if request.method == 'POST' else None
     print(form)
+    print(form.cleaned_data)
     if form.is_valid():
         activity.name = form.cleaned_data['name']
         activity.start_time = form.cleaned_data['start_time']
@@ -265,7 +266,7 @@ def arrange(request):
 
 @login_required
 def type_in_single(request):
-    form = ActivityForm({'start_time': timezone.now()})
+    form = ActivityForm()
     return render(request, 'type_in_single.html', {'form': form})
 
 

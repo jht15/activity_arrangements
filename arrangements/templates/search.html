@@ -8,17 +8,83 @@
 	<div class="panel-body">
 	<form method="POST" action="{% url 'search-submit' %}"style="font-family:STXinwei">
 		{% csrf_token %}
-		{% bootstrap_form search_form layout='inline'%}
-    <div style="width:8%;float:left">
-		{% buttons submit='查找' %}{% endbuttons %}
-    </div>
+	<div class="form-group">
+		活动名称<input type="text" class="form-control" name="name" id="name">
+	</div>
+	<div>最早开始时间</div></br>
+    <div class="input-group date form_datetime col-md-5" data-date="" data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" type="text" name="min_start_time"value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input1" value="" /><br/>
+    </br>
+	
+	<div>最晚开始时间</div></br>
+    <div class="input-group date form_datetime col-md-5" data-date="" data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" type="text" name="max_start_time"value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input1" value="" /><br/>
+<script type="text/javascript">
+</script>
+    </br>
+	
+	<div>最早结束时间</div></br>
+    <div class="input-group date form_datetime col-md-5" data-date="" data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" type="text" name="min_end_time"value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input1" value="" /><br/>
+    </br>
+	
+	<div>最晚结束时间</div></br>
+    <div class="input-group date form_datetime col-md-5" data-date="" data-date-format="yyyy/mm/dd hh:ii" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" type="text" name="max_end_time"value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+					<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+				<input type="hidden" id="dtp_input1" value="" /><br/>
+    </br>
+	<div class="form-group">
+		活动地点：<input type="text" class="form-control" name="place" id="place">
+	</div>
+	<div class="form-group">
+		活动种类：<input type="text" class="form-control" name="type" id="type">
+	</div>
+	<div class="form-group">
+		活动最低优先级:<input type="text" class="form-control" name="min_priority" id="min_priority">
+	</div>
+	<div class="form-group">
+		活动最小热情：<input type="text" class="form-control" name="min_enthusiasm" id="min_enthusiasm">
+	</div>
+		<div style="width:5%;float:left">
+		{% buttons submit='提交' %}{% endbuttons %}
+		</div>
 	</form>
-    <div style="width:8%;float:left">
-		<form method="POST" action="{% url 'to-list' %}"style="font-family:STXinwei">
-		{% csrf_token %}
-		{% buttons submit='返回' %}{% endbuttons %}
-		</form>
+	
+	<div style="width:5%;float:left">
+	<form method="POST" action="{% url 'to-list' %}"style="font-family:STXinwei">
+	{% csrf_token %}
+	{% buttons submit='返回' %}{% endbuttons %}
+	</form>
 	</div>
 	</div>
 </div>
+
+<script type="text/javascript">
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		forceParse: 0,
+        showMeridian: 1
+    });
+</script>
+
 {% endblock %}

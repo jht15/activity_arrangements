@@ -1,0 +1,23 @@
+<VirtualHost *:80>                                                                                                                                                                       
+       ServerName www.yourip_OR_domain.com
+       ServerAlias otherdomain.com
+       Alias /media/ /var/www/testproject/media/
+       Alias /static/ /var/www/testproject/static
+       /
+       <Directory /var/www/testproject/media>
+          Require all granted
+       </Directory> 
+       
+       <Directory /var/www/testproject/static>
+         Require all granted
+       </Directory> 
+       
+      WSGIScriptAlias / /var/www/testproject/testproject/wsgi.py
+      
+      <Directory /var/www/testproject/testproject>
+        <Files wsgi.py>
+         Require all granted
+        </Files>     
+      </Directory> 
+                   
+  </VirtualHost>

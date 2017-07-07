@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load bootstrap3 %}
 {% include 'messages.html' %}
 <h3><font style="font-family:STXinwei">注册</font></h3>
-<div>
+<div style="background-color:#F4F4F4">
 	<form method="post" action="{% url 'signup-submit' %}">
 		{% csrf_token %}
 		<div class="form-group">
@@ -16,7 +17,13 @@
 			class="form-control" placeholder="Password" style="width:50%; background-color:#F8F8F8" required
 			/>
 		</div>
-		<button type="submit" class="btn btn-primary"><font  style="font-family:STXinwei">注册</font></button>
+		<div style="width:5%;float:left;font-family:STXinwei">
+		{% buttons submit='注册' %}{% endbuttons %}
+		</div>
 	</form>
+</br>
+</br>
+</br>
+
 </div>
 {% endblock %}

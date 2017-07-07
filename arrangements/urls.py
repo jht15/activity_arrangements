@@ -30,6 +30,6 @@ urlpatterns = [
     url(r'^type_in_multi/submit$', views.type_in_multi_submit, name='type-in-multi-submit'),
     url(r'^static/(?P<path>.*)', django.views.static.serve,
         {'document_root': '/Users/JHT/Desktop/python/activity_arrangements/arrangements/static/img'}),
-
+    url(r'^arrange/download$', views.arranged_file, name='MyArrangement'),
 ]
 

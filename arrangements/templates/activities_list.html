@@ -19,17 +19,17 @@
 
 </br>
 </br>
-<div class="panel panel-default" style="background-color:#FFFFBB" border="0">  
+<div class="panel panel-default" style="background-color:#F1F2F1" border="0">
 <div class="panel-body">
 
 <div class="col-md-6">
-<div class="panel panel-default" style="background-color:#FFFFA6">  
+<div class="panel panel-default" style="background-color:#F0F0F0">
 <div class="panel-body">
 <div><h3><font style="color:#6699FF;font-family:STXinwei">未选择活动</font></h3></div>
-<table class="table" border="1"  width="100%" cellpadding="0" cellspacing="1" bordercolor="#FFFFA6"><tbody>
+<table class="table" border="1"  width="100%" cellpadding="0" cellspacing="1" bordercolor="#F0F0F0"><tbody>
 	{% for activity in unchosen_search_list %}
 	<tr>
-		<td style="background-color:#FFCCCC;border-radius:15px"><a href="{% url 'activity-info' activity.id %}">&nbsp;<font size = "4" style="color:#3333CC;font-family:STXinwei"><u>{{activity.name}}</u></font></a>
+		<td style="background-color:#FBF1F1;border-radius:15px"><a href="{% url 'activity-info' activity.id %}">&nbsp;<font size = "4" style="color:#3333CC;font-family:STXinwei"><u>{{activity.name}}</u></font></a>
 		<div class="info" style="color:#6699FF;font-family:STXinwei">
 			{% bootstrap_icon 'start_time' %}{{activity.start_time}}
 			{% bootstrap_icon 'end_time' %}{{activity.end_time}}
@@ -46,11 +46,11 @@
 </tbody></table>
 
 
-<table border="1"  width="100%" cellpadding="0" cellspacing="1" bordercolor="#FFFFA6"><tbody>
+<table border="1"  width="100%" cellpadding="0" cellspacing="1" bordercolor="#F0F0F0"><tbody>
 	{% for activity in unchosen_unsearch_list %}
 	<tr>
 	
-		<td style="background-color:#CCFFCC;border-radius:15px"><a href="{% url 'activity-info' activity.id %}">&nbsp;<font size = "4" style="color:#3333CC;font-family:STXinwei"><u>
+		<td style="background-color:#E8F0FD;border-radius:15px"><a href="{% url 'activity-info' activity.id %}">&nbsp;<font size = "4" style="color:#3333CC;font-family:STXinwei"><u>
 		{{activity.name}}</u></font></a>
 		<div class="info"style="color:#6699FF;font-family:STXinwei">
 
@@ -72,13 +72,13 @@
 </div>
 
 <div class="col-md-6">
-<div class="panel panel-default" style="background-color:#FFFFA6">  
+<div class="panel panel-default" style="background-color:#F0F0F0">
 <div class="panel-body">
 <h3><font style="color:#6699FF;font-family:STXinwei">已选择活动</font></h3>
-<table border="1"  width="100%" cellpadding="0" cellspacing="1" bordercolor="#FFFFA6"><tbody>
+<table border="1"  width="100%" cellpadding="0" cellspacing="1" bordercolor="#F0F0F0"><tbody>
 	{% for activity in chosen_search_list %}
 	<tr>
-		<td style="background-color:#FFCCCC;border-radius:15px"><a href="{% url 'activity-info' activity.id %}">&nbsp;<font size = "4" style="color:#3333CC;font-family:STXinwei"><u>{{activity.name}}</u></font></a>
+		<td style="background-color:#FBF1F1;border-radius:15px"><a href="{% url 'activity-info' activity.id %}">&nbsp;<font size = "4" style="color:#3333CC;font-family:STXinwei"><u>{{activity.name}}</u></font></a>
 		<div class="info" style="color:#6699FF;font-family:STXinwei">
 			{% bootstrap_icon 'start_time' %}{{activity.start_time}}
 			{% bootstrap_icon 'end_time' %}{{activity.end_time}}
@@ -95,10 +95,10 @@
 </table></tbody>
 
 
-<table border="1"  width="100%" cellpadding="0" cellspacing="1" bordercolor="#FFFFA6"><tbody>
+<table border="1"  width="100%" cellpadding="0" cellspacing="1" bordercolor="#F0F0F0"><tbody>
 	{% for activity in chosen_unsearch_list %}
 	<tr>
-		<td style="background-color:#CCFFCC;border-radius:15px"><a href="{% url 'activity-info' activity.id %}">&nbsp;<font size = "4" style="color:#3333CC;font-family:STXinwei"><u>{{activity.name}}</u></font></a>
+		<td style="background-color:#E8F0FD;border-radius:15px"><a href="{% url 'activity-info' activity.id %}">&nbsp;<font size = "4" style="color:#3333CC;font-family:STXinwei"><u>{{activity.name}}</u></font></a>
 		<div class="info"style="color:#6699FF;font-family:STXinwei">
 			{% bootstrap_icon 'start_time' %}{{activity.start_time}}
 			{% bootstrap_icon 'end_time' %}{{activity.end_time}}

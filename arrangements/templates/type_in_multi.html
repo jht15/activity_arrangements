@@ -6,7 +6,7 @@
 <h3><font style="font-family:STXinwei">录入活动</font></h3>
 <div class="panel panel-default">
 	<div class="panel-heading"><font style="font-family:STXinwei">录入活动</font></div>
-	<div class="panel-body">
+	<div class="panel-body" style="background-color:#F4F4F4">
 		<form enctype="multipart/form-data" method="POST" action="{% url 'type-in-multi-submit' %}"style="font-family:STXinwei">
 			{% csrf_token %}
 			{% for field in form %}
@@ -23,7 +23,31 @@
 		</form>
 	</div>
 	</div>
-	</br>
-	</br>
+
 </div>
+    </br>
+    </br>
+
+    <div style="color:#6699FF;font-family:STXinwei">
+        <h3 style="color:#6699FF;font-family:STXinwei">提示</h3>
+        <font size = 3>
+        </br>
+        1.请上传.txt文件
+        </br>
+        2.文件内容格式为:
+        </br>
+        活动1名称</br>
+        活动1开始时间</br>
+        活动1结束时间</br>
+        活动1优先级</br>
+        活动1地点</br>
+        活动1热情度</br>
+        活动1类型</br>
+        活动1内容</br>
+        活动2名称</br>
+        活动2开始时间</br>
+        活动2结束时间</br>
+        ...</br>
+        </font>
+    </div>
 {% endblock %}

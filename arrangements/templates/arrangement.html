@@ -5,7 +5,7 @@
 <table class="table" border="1"  width="100%" cellpadding="0" cellspacing="1" bordercolor="#FFFFCC"><tbody>
 	{% for activity in arrange_list %}
 	<tr>
-		<td style="background-color:#FFCCCC;border-radius:15px"><a href="{% url 'activity-info' activity.id %}"><font size="4" style="color:#3333CC;font-family:STXinwei"><u>{{activity.name}}</u></font></a>
+		<td style="background-color:#E8F0FD;border-radius:15px"><a href="{% url 'activity-info' activity.id %}"><font size="4" style="color:#3333CC;font-family:STXinwei"><u>{{activity.name}}</u></font></a>
 		<div class="info">
 			{% bootstrap_icon 'start_time' %}<font style="color:#6699FF;font-family:STXinwei">{{activity.start_time}}</font>
 			{% bootstrap_icon 'end_time' %}<font style="color:#6699FF;font-family:STXinwei">{{activity.end_time}}</font>
@@ -23,7 +23,7 @@
 <table class="table" border="1"  width="100%" cellpadding="0" cellspacing="1" bordercolor="#FFFFCC"><tbody>
 	{% for activity in disarrange_list %}
 	<tr>
-		<td style="background-color:#CCFFCC;border-radius:15px"><a href="{% url 'activity-info' activity.id %}"><font size="4" style="color:#3333CC;font-family:STXinwei"><u>{{activity.name}}</u></font></a>
+		<td style="background-color:#FBF1F1;border-radius:15px"><a href="{% url 'activity-info' activity.id %}"><font size="4" style="color:#3333CC;font-family:STXinwei"><u>{{activity.name}}</u></font></a>
 		<div class="info">
 			{% bootstrap_icon 'start_time' %}<font style="color:#6699FF;font-family:STXinwei">{{activity.start_time}}</font>
 			{% bootstrap_icon 'end_time' %}<font style="color:#6699FF;font-family:STXinwei">{{activity.end_time}}</font>
@@ -38,6 +38,12 @@
 	<form method="POST" action="{% url 'to-list' %}" style="font-family:STXinwei"> 
 	{% csrf_token %}
 	{% buttons submit='返回' %}{% endbuttons %}
+	</form>
+</div>
+    <div>
+	<form method="POST" action="{% url 'MyArrangement' %}" style="font-family:STXinwei">
+	{% csrf_token %}
+	{% buttons submit='下载' %}{% endbuttons %}
 	</form>
 </div>
 {% endblock %}

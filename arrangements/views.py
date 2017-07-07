@@ -5,6 +5,7 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.http import StreamingHttpResponse, HttpResponse
 from django.utils import timezone
 from .tasks import check
 
@@ -260,8 +261,47 @@ def arrange(request):
 
         else:
             disarrange_list.append(activity)
-
+    arrange_list.sort(key=lambda a: (a.start_time, a.end_time))
+    disarrange_list.sort(key=lambda a: (a.start_time, a.end_time))
     return render(request, 'arrangement.html', {'arrange_list': arrange_list, 'disarrange_list': disarrange_list})
+
+
+def arranged_file(request):
+    content = ''
+    if auth.get_user(request).is_anonymous:
+        return redirect('arrange')
+    for activity in request.user.activities.all():
+        if not activity.is_arranged:
+            continue
+        content += '活动名称: '
+        content += activity.name
+        content += '\n'
+        content += '开始时间: '
+        content += str(activity.start_time)
+        content += '\n'
+        content += '结束时间: '
+        content += str(activity.end_time)
+        content += '\n'
+        content += '优先级: '
+        content += str(activity.priority)
+        content += '\n'
+        content += '地点: '
+        content += activity.place
+        content += '\n'
+        content += '热情度: '
+        content += str(activity.enthusiasm)
+        content += '\n'
+        content += '类型: '
+        content += activity.type
+        content += '\n'
+        content += '内容: '
+        content += activity.content
+        content += '\n'
+
+    response = StreamingHttpResponse(content)
+    response['Content-Type'] = 'application/octet-stream'
+    response['Content-Disposition'] = 'attachment;filename="MyArrangement.txt"'
+    return response
 
 
 @login_required

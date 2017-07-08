@@ -25,7 +25,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '@pdj5og5c1k-x-eb^h5nsbp1+db4nk@cd_csaop$bli3&_lw%='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -152,7 +152,7 @@ CELERY_IMPORTS = ['arrangements.tasks', ]
 CELERYBEAT_SCHEDULE = {
     'check-every-hour': {
         'task': 'tasks.check',
-        'schedule': timedelta(seconds=10),
+        'schedule': timedelta(hours=1),
         'args': ()
     },
 }
